@@ -1,0 +1,87 @@
+html {
+    height: 100%;
+  }
+  body {
+    margin:0;
+    padding:0;
+    font-family: sans-serif;
+    background: linear-gradient(#141e30, #243b55);
+}
+
+.addBookForm {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 250px;
+    padding: 30px;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+}
+
+.addBookForm h2 {
+    margin-bottom: 20px;
+    margin-top: 20px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+  display: inline-block;
+}
+
+form input {
+    width: 100%;
+    padding: 5px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 10px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+label {
+    color: grey;
+}
+
+#read {
+    width: 30%;
+    margin-bottom: 30px;
+}
+ 
+button {
+    background-color: #243b55;
+    border-radius: 10%;
+    color: white;
+}
+
+#closeForm {
+    float: right;
+    border-radius: 10%;
+}
+
+.books {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.book {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 15%;
+    border: 1px solid white;
+    margin: 1em;
+    background-color: #243b55;
+    border-radius: 10%;
+    color: white;
+}
+
+#newBook{
+    border-radius: 100%;
+    height: 5em;
+}
