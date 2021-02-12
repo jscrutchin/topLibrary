@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,8 +8,9 @@
     <title>Leather Bound Books</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+
     <div class="container">
         <button id="newBook">New book</button>
 
@@ -32,13 +34,33 @@
         </div>
 
         <div class="books">
-            
+
         </div>
 
     </div>
 
-    <script src="/__/firebase/8.2.6/firebase-app.js"></script>
-    <script src="/__/firebase/init.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDr_ymuthLAY5xsXufTYe9VWdWJ9FNxqiY",
+            authDomain: "toplibraryjs.firebaseapp.com",
+            databaseURL: "https://toplibraryjs-default-rtdb.firebaseio.com",
+            projectId: "toplibraryjs",
+            storageBucket: "toplibraryjs.appspot.com",
+            messagingSenderId: "755841465031",
+            appId: "1:755841465031:web:2a919065e41059e99f1ce2"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
     <script src="main.js"></script>
 </body>
+
 </html>

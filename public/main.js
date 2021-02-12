@@ -5,6 +5,8 @@ let myLibrary = [];
 const newBookBtn = document.querySelector('#newBook');
 const addBookForm = document.querySelector('.addBookForm');
 const books = document.querySelector('.books');
+
+//hides addBookForm before it is clicked
 addBookForm.style.display = 'none';
 
 // Class to create books
@@ -15,26 +17,25 @@ class Book {
         this.pages = pages + ' pages';
         this.read = read;
     }
-    toggleReadStatus() {
-        this.read = !this.read;
-    }
 }
 
 
 // Function to add books to myLibrary array
 function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(new Book(title, author, pages, read));
+    setData();
 }
 
 //Function to delete books from myLibrary array
 function deleteBook() {
     myLibrary.splice(this.id, 1);
     display(); 
+    setData();
 }
 
 // Function to show the addBookForm
 newBookBtn.addEventListener('click', () => {
-    addBookForm.style.display = 'initial'
+    addBookForm.style.display = 'initial';
 })
 
 //Function to add new book
@@ -53,6 +54,7 @@ function addNewBook(e) {
     display();
     clearForm();
 }
+
 
 //Show books
 function display() {
@@ -73,23 +75,15 @@ function display() {
         bookPages.textContent = book.pages;
         bookBox.appendChild(bookPages);
 
-        const bookRead = document.createElement('p');
-        bookRead.style.cursor = 'pointer';
-        if (myLibrary[index].read) {
-            bookRead.textContent = 'Read';
-            bookRead.style.color = 'white';
-            bookRead.style.backgroundColor = 'green';
-        } else {
-            bookRead.textContent = 'Unread';
-            bookRead.style.color = 'white';
-            bookRead.style.backgroundColor = 'red';
+        const readBtn = document.createElement('button');
+        if(book.read===false) {
+            readBtn.textContent = 'Not Read';
+            readBtn.style.backgroundColor = '#e04f63';
+        }else {
+            readBtn.textContent = 'Read';
+            readBtn.style.backgroundColor = '#63da63'
         }
-        bookBox.appendChild(bookRead);
-
-        bookRead.addEventListener('click', (e) => {
-            myLibrary[index].toggleReadStatus();
-            display();
-        })
+        bookBox.appendChild(readBtn);
 
         const deleteBookBtn = document.createElement('button');
         deleteBookBtn.classList.add('delete-btn');
@@ -99,8 +93,13 @@ function display() {
         books.appendChild(bookBox);
 
         deleteBookBtn.id = index.toString();
-        
         deleteBookBtn.addEventListener('click', deleteBook);
+
+        readBtn.addEventListener('click', () => { 
+            book.read = !book.read; 
+            setData(); 
+            display();
+        });
     });
 }
 
@@ -120,3 +119,20 @@ function clearForm() {
     pages.value = "";
     read.checked = false;
 }
+
+function setData() {
+    localStorage.setItem(`myLibrary`, JSON.stringify(myLibrary));
+}
+
+function restore() {
+    if(!localStorage.myLibrary) {
+        display();
+    }else {
+        let objects = localStorage.getItem('myLibrary') // gets information from local storage to use in below loop to create DOM/display
+        objects = JSON.parse(objects);
+        myLibrary = objects;
+        display();
+    }
+}
+
+restore();
