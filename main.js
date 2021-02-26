@@ -50,9 +50,12 @@ function addNewBook(e) {
     const pages = document.querySelector('#pages')
     const read = document.querySelector('#read');
 
-    addBookToLibrary(title.value, author.value, pages.value, read.checked);
-    display();
-    clearForm();
+    if (validateSubmission()) {
+        addBookToLibrary(title.value, author.value, pages.value, read.checked);
+
+        display();
+        clearForm();
+    }
 }
 
 
@@ -101,6 +104,22 @@ function display() {
             display();
         });
     });
+}
+
+function validateSubmission() {
+    if (title.value == "" || author.value == "" || pages.value == "") {
+        title.style.border = '1px solid red';
+        author.style.border = '1px solid red';
+        pages.style.border = '1px solid red';
+        return false;
+
+    } 
+    else {
+        title.style.border = 'none';
+        author.style.border = 'none';
+        pages.style.border = 'none';
+        return true;
+    }
 }
 
 //Close form 
